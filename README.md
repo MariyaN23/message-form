@@ -8,16 +8,16 @@ Success and error messages displaying\
 Saving form in database
 
 ## Running the app
-cd frontend
+cd frontend\
 npm install
 
-cd backend
+cd backend\
 npm install
 
-docker-compose up --build
+docker-compose up --build\
 docker-compose down -v --remove-orphans
 
-Server runs on http://localhost:5000
+Server runs on http://localhost:5000\
 Client runs on http://localhost:8080
 
 ## Stylization
