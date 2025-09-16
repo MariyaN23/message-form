@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --text-primary: #181D27;
+}
+
+body {
+    font-family: "Inter", system-ui, sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    color: var(--text-primary);
+}
+
+.container {
+    max-width: 1280px;
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 4rem;
+}
