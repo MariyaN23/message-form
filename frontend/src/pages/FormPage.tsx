@@ -1,15 +1,30 @@
 import { Button, Form, Input, notification } from "antd"
-import { FieldType } from "../types/form.ts";
 import TextArea from "antd/es/input/TextArea";
+import { API } from "../api/api";
+import { MessageType } from "../types/message";
+import { useState } from "react";
 
 export const FormPage = () => {
     const [api, contextHolder] = notification.useNotification()
-    const onSubmit = (data: FieldType) => {
-        console.log(data)
-        api.success({
-            message: 'Отправлено',
-            description: 'Ваше сообщение будет рассмотрено в ближайшее время',
-        })
+    const [form] = Form.useForm()
+    const [isLoading, setIsLoading] = useState(false)
+    const onSubmit = async (data: MessageType) => {
+        try {
+            setIsLoading(true)
+            await API.addMessage(data)
+            api.success({
+                message: 'Отправлено',
+                description: 'Ваше сообщение будет рассмотрено в ближайшее время',
+            })
+            form.resetFields()
+        } catch (error) {
+            api.error({
+                message: 'Сообщение не отправлено',
+                description: `${error}`,
+            })
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -19,6 +34,7 @@ export const FormPage = () => {
                 name="form"
                 className={'max-w-sm mx-auto'}
                 onFinish={onSubmit}
+                form={form}
             >
                 <Form.Item
                     label="Имя"
@@ -54,7 +70,10 @@ export const FormPage = () => {
                     <TextArea />
                 </Form.Item>
                 <Form.Item>
-                    <Button htmlType="submit">
+                    <Button
+                        htmlType="submit"
+                        loading={isLoading}
+                    >
                         Отправить
                     </Button>
                 </Form.Item>
