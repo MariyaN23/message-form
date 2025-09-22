@@ -17,7 +17,7 @@ npm install
 docker-compose up --build\
 docker-compose down -v --remove-orphans
 
-Server runs on http://localhost:5000\
+Server runs on http://localhost:5000
 Client runs on http://localhost:8080
 
 ## Stylization

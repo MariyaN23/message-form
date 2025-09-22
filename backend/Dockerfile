@@ -5,11 +5,12 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package.json and install dependencies
-COPY backend/package.json package-lock.json ./
+COPY package.json package-lock.json ./
+
 RUN npm install --frozen-lockfile
 
 # Copy the rest of the application
-COPY backend .
+COPY . .
 
 # Expose the backend port
 EXPOSE 5000
