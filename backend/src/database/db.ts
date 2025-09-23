@@ -10,12 +10,9 @@ export const messagesCollection: Collection<MessageType> = db.collection<Message
 
 export const runDb = async () => {
     try {
-        console.log(mongoUri)
         await client.connect()
         await client.db("messages").command({ping: 1})
-        console.log("Connected successfully to mongo server")
     } catch {
         await client.close()
-        console.log("Can't connect to DB")
     }
 }
